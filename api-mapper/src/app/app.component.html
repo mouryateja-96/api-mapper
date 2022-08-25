@@ -1,0 +1,33 @@
+<nz-layout>
+  <div>
+    <h2>API Mapper</h2>
+    <nz-spin [nzSpinning]="createLoading">
+      <form nz-form [formGroup]="form" class="form" (ngSubmit)="submitForm()">
+        <nz-form-label [nzSpan]="12" [nzRequired]="true">Which API?
+        </nz-form-label>
+        <nz-form-item class="item">        
+          <nz-form-control [nzSpan]="6" nzErrorTip="Please select the API!">
+              <nz-select formControlName="apiSelect" (ngModelChange)="apiSelectChange()" nzPlaceHolder="Please select">
+                  <nz-option nzValue="Current" nzLabel="Current"></nz-option>
+                  <nz-option nzValue="Forecast" nzLabel="Forecast"></nz-option>
+              </nz-select>
+          </nz-form-control>            
+      </nz-form-item>
+      <nz-form-label [nzSpan]="12" [nzRequired]="true" >City Name
+      </nz-form-label> 
+      <nz-form-item class="item">              
+          <nz-form-control [nzSpan]="5" nzErrorTip="Please provide the City name!">
+            <input nz-input placeholder="City Name" formControlName="cityName"/>
+          </nz-form-control>    
+      </nz-form-item> 
+      <button nz-button nzSize=large class="item" nzType="primary" (click)="clickSubmit()" nzShape="round">Show Response</button>
+      <nz-form-item class="item" >
+        <nz-form-control>
+            <nz-form-label [nzSpan]="12">API Information</nz-form-label>            
+            <pre>{{ weatherResponseTobeShown | json }}</pre>
+        </nz-form-control>
+    </nz-form-item>
+      </form>
+    </nz-spin>
+  </div>
+</nz-layout>
