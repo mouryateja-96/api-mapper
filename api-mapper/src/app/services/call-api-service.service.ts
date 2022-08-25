@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
+//Added all the API info on service instead of using a plain or js or JSON file, it will
+//be an export/import if saving the API info on flat file 
 const WEATHER_API = environment.weatherAPI;
-// Might have to use below constants in future
 const WEATHER_API_KEY = environment.weatherAPIKey;
 
 

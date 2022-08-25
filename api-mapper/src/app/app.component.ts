@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CallApiServiceService } from '../app/services/call-api-service.service';
-import { WeatherAPIResponse } from '../app/models/currentAPIResponse';
-import { ForecastAPIResponse } from './models/forecastAPIResonse';
+import { WeatherAPIResponse } from './models/weatherAPIResponse';
 
 @Component({
   selector: 'app-root',
