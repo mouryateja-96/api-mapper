@@ -1,4 +1,4 @@
-export interface CurrentAPIResponse {
+export interface WeatherAPIResponse {
     town: string;
     state: string;
     nation: string;
@@ -8,7 +8,7 @@ export interface CurrentAPIResponse {
     Time: string;
 }
 
-export interface CurrentAPIResponse {
+export interface WeatherAPIResponse {
     location : Location;
 }
 export interface Location {
@@ -21,3 +21,32 @@ export interface Location {
     localtime: string;
 }
 
+export interface WeatherAPIResponse {
+    forecast: Forecast;
+}
+
+export interface Forecast {
+    forecastday: Forecastday[];
+}
+
+export interface Forecastday {
+    astro: Astro;
+}
+
+export interface Astro {
+    sunrise: string;
+    sunset: string;
+    moonrise: string;
+    moonset: string;
+    moon_phase: string;
+    moon_illumination: string;
+}
+
+export interface WeatherAPIResponse {
+    Dawn: string;
+    Dusk: string;
+    "moon lit": string;
+    "moon sleep": string;
+    orientation: string;
+    Illumination: string;
+}

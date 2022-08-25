@@ -29,4 +29,14 @@ export class CallApiServiceService {
     return this.httpClient.get<any>(this.apiURL + endPoints, httpparams);
   }
 
+  public getForecastWeatherResponse(city : string): Observable<any> {
+    let endPoints = '/forecast.json';
+    let httpparams = {
+      params: new HttpParams()
+        .set('key', WEATHER_API_KEY)
+        .set('q', city)    
+    };
+    return this.httpClient.get<any>(this.apiURL + endPoints, httpparams);
+  }
+
 }
