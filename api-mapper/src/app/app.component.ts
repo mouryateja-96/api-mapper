@@ -34,6 +34,8 @@ export class AppComponent {
 
   clickSubmit(): void {
     if (this.form.valid) {
+      this.weatherResponse = {} as WeatherAPIResponse;
+      this.weatherResponseTobeShown = {} as WeatherAPIResponse;
       console.log('Button ok clicked!');
       this.getWeatherResponse();
     }
@@ -63,7 +65,7 @@ export class AppComponent {
         }
       });
     }
-    else if(this.form.controls['apiSelect'].value == "Forecast") {
+    else if (this.form.controls['apiSelect'].value == "Forecast") {
       this.callApiServiceService.getForecastWeatherResponse(this.form.controls['cityName'].value).subscribe({
         next: (data) => {
           this.createLoading = false;
@@ -75,7 +77,7 @@ export class AppComponent {
           this.weatherResponseTobeShown['moon lit'] = this.weatherResponse.forecast.forecastday[0].astro.moonrise;
           this.weatherResponseTobeShown['moon sleep'] = this.weatherResponse.forecast.forecastday[0].astro.moonset;
           this.weatherResponseTobeShown.orientation = this.weatherResponse.forecast.forecastday[0].astro.moon_phase;
-          this.weatherResponseTobeShown.Illumination= this.weatherResponse.forecast.forecastday[0].astro.moon_illumination;
+          this.weatherResponseTobeShown.Illumination = this.weatherResponse.forecast.forecastday[0].astro.moon_illumination;
           console.log(this.weatherResponseTobeShown);
         },
         error: (error) => {
