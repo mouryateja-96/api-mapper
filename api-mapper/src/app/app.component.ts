@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CallApiServiceService } from '../app/services/call-api-service.service';
 import { WeatherAPIResponse } from './models/weatherAPIResponse';
+import Weather from "../../../_files/Weather.json";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   createLoading = false;
 
   weatherResponse = {} as WeatherAPIResponse;
-  weatherResponseTobeShown = {} as WeatherAPIResponse;
+  weatherResponseTobeShown = {} as any;
 
   constructor(private formBuilder: FormBuilder, private callApiServiceService: CallApiServiceService) {
     this.form = this.formBuilder.group({
@@ -49,6 +50,22 @@ export class AppComponent {
           console.log(data);
           this.weatherResponse = data;
           console.log(this.weatherResponse);
+          let name = Weather.weatherAPIRecords.current.name,
+            region = Weather.weatherAPIRecords.current.region,
+            country = Weather.weatherAPIRecords.current.country,
+            lat = Weather.weatherAPIRecords.current.lat,
+            lon = Weather.weatherAPIRecords.current.lon,
+            tz_id = Weather.weatherAPIRecords.current.tz_id,
+            localtime = Weather.weatherAPIRecords.current.localtime;
+          this.weatherResponseTobeShown = {
+            [name]: this.weatherResponse.location.name,
+            [region]: this.weatherResponse.location.region,
+            [country]: this.weatherResponse.location.country,
+            [lat]: this.weatherResponse.location.lat,
+            [lon]: this.weatherResponse.location.lon,
+            [tz_id]: this.weatherResponse.location.tz_id,
+            [localtime]: this.weatherResponse.location.localtime,
+          };
           this.weatherResponseTobeShown.town = this.weatherResponse.location.name;
           this.weatherResponseTobeShown.state = this.weatherResponse.location.region;
           this.weatherResponseTobeShown.nation = this.weatherResponse.location.country;
@@ -71,12 +88,20 @@ export class AppComponent {
           console.log(data);
           this.weatherResponse = data;
           console.log(this.weatherResponse);
-          this.weatherResponseTobeShown.Dawn = this.weatherResponse.forecast.forecastday[0].astro.sunrise;
-          this.weatherResponseTobeShown.Dusk = this.weatherResponse.forecast.forecastday[0].astro.sunset;
-          this.weatherResponseTobeShown['moon lit'] = this.weatherResponse.forecast.forecastday[0].astro.moonrise;
-          this.weatherResponseTobeShown['moon sleep'] = this.weatherResponse.forecast.forecastday[0].astro.moonset;
-          this.weatherResponseTobeShown.orientation = this.weatherResponse.forecast.forecastday[0].astro.moon_phase;
-          this.weatherResponseTobeShown.Illumination = this.weatherResponse.forecast.forecastday[0].astro.moon_illumination;
+          let sunrise = Weather.weatherAPIRecords.forecast.sunrise,
+            sunset = Weather.weatherAPIRecords.forecast.sunset,
+            moonrise = Weather.weatherAPIRecords.forecast.moonrise,
+            moonset = Weather.weatherAPIRecords.forecast.moonset,
+            moon_phase = Weather.weatherAPIRecords.forecast.moon_phase,
+            moon_illumination = Weather.weatherAPIRecords.forecast.moon_illumination;
+          this.weatherResponseTobeShown = {
+            [sunrise]: this.weatherResponse.forecast.forecastday[0].astro.sunrise,
+            [sunset]: this.weatherResponse.forecast.forecastday[0].astro.sunset,
+            [moonrise]: this.weatherResponse.forecast.forecastday[0].astro.moonrise,
+            [moonset]: this.weatherResponse.forecast.forecastday[0].astro.moonset,
+            [moon_phase]: this.weatherResponse.forecast.forecastday[0].astro.moon_phase,
+            [moon_illumination]: this.weatherResponse.forecast.forecastday[0].astro.moon_illumination,
+          };
           console.log(this.weatherResponseTobeShown);
         },
         error: (error) => {

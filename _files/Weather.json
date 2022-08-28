@@ -1,0 +1,25 @@
+{
+	"weatherAPIRecords": {
+		"current": {
+			"API": "http://api.weatherapi.com/v1/current.json",
+			"key": "1a95c10bd20e4ea490c121833222308",
+			"name": "town",
+			"region": "state",
+			"country": "nation",
+			"lat": "latitude",
+			"lon": "longitude",
+			"tz_id": "Time Zone",
+			"localtime": "Time"
+		},
+		"forecast": {
+			"API": "http://api.weatherapi.com/v1/forecast.json",
+			"key": "1a95c10bd20e4ea490c121833222308",
+			"sunrise": "Dawn",
+			"sunset": "Dusk",
+			"moonrise": "moon lit",
+			"moonset": "moon sleep",
+			"moon_phase": "orientation",
+			"moon_illumination": "Illumination"
+		}
+	}
+}
